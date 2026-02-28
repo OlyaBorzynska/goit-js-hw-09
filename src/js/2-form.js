@@ -17,7 +17,7 @@ form.addEventListener('input', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const zipFormData = localStorage.getItem('feedback-form-state');
-  const savedFormData = JSON.parse(zipFormData) || {};
+  const savedFormData = zipFormData ? JSON.parse(zipFormData) : {};
   email.value = savedFormData.email || '';
   textarea.value = savedFormData.message || '';
   formData.email = email.value;
