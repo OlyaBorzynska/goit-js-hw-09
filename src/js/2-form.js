@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedFormData = JSON.parse(zipFormData) || {};
   email.value = savedFormData.email || '';
   textarea.value = savedFormData.message || '';
+  formData.email = email.value;
+  formData.message = textarea.value;
 });
 
 form.addEventListener('submit', e => {
@@ -27,11 +29,10 @@ form.addEventListener('submit', e => {
   if (email.value.trim() === '' || textarea.value.trim() === '') {
     alert('All form fields must be filled in');
   } else {
-    formData.email = email.value.trim();
-    formData.message = textarea.value.trim();
     console.log(formData);
+    formData.email = '';
+    formData.message = '';
+    localStorage.removeItem('feedback-form-state');
+    form.reset();
   }
-
-  localStorage.removeItem('feedback-form-state');
-  form.reset();
 });
